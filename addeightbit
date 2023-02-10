@@ -1,0 +1,36 @@
+.model small
+.stack 100h
+.data
+    num1 db 12h ; first 8-bit number
+    num2 db 04h ; second 8-bit number
+
+.code
+main proc    
+    mov ah,1   ; for taking input from console
+    int 21h     ; everytime written for execution
+    
+    mov bl,al      ;input 1
+    int 21h
+    
+    mov bh,al      ;input 2
+    
+    add bl,bh   ;bl = bl+bh
+    
+    mov ah,2    ; to show output single charecter in console
+    mov dl,0dh    ; ascii for carriage return (CR) charecter when printed the cursore moves to the beginning of the current line
+    int 21h       ;trigger to execute previous operation
+    mov dl,0ah    ;oah ascii is for line feed character (LF) 
+    int 21h
+    
+    mov ah,2    ; to show output single charecter in console
+    sub bl,48   ;fo ascii sub 48 from result
+    mov dl, bl   ;    move bl to dl for displaying the value
+    int 21h 
+    
+    
+    
+    mov ah,4ch    ;exit program
+    int 21h
+   
+main endp
+end main
